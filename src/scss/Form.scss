@@ -1,3 +1,22 @@
 .btn_submit_form {
   flex-shrink: 0;
+  margin-left: 10px;
+  max-height: 38px;
+}
+
+.main_form {
+  display: flex;
+  flex-direction: row;
+  padding-left: 18px;
+}
+
+.input_city {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather_component{
+  position: absolute;
+  top: 90px;
+  left: 230px;
 }
