@@ -23,7 +23,8 @@
 }
 
 .loading_spinner {
-  margin-left: 10px;
+  position: absolute;
+  right: -45px;
 }
 
 .invalid_feedback, .valid_feedback {
