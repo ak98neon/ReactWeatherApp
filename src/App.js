@@ -1,9 +1,27 @@
 import React from 'react';
 import Info from './components/info';
-import Form from './components/form';
+import FormWeather from './components/form';
 import Weather from './components/weather';
+import styled from 'styled-components';
 
 const API_KEY = "5001c5c4ca26376aeb6215ed4724be97";
+
+const MainDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: #44b2ce;
+`;
+
+const Div = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+`;
 
 class App extends React.Component {
 
@@ -26,9 +44,11 @@ class App extends React.Component {
       const data = await api_url.json();
 
       var sunset = data.sys.sunset;
-      var date = new Date();
-      date.setTime(sunset);
-      var sunset_date = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+      if (sunset) {
+        var date = new Date();
+        date.setTime(sunset);
+        var sunset_date = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+      }
 
       this.setState({
         temp: data.main.temp,
@@ -52,10 +72,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <MainDiv>
+        <Div>
           <Info />
-          <Form weatherMethod={this.gettingWeather} />
+          <FormWeather
+            weatherMethod={this.gettingWeather}
+            city={this.state.city}
+            error={this.state.error}
+          />
           <Weather
             temp={this.state.temp}
             city={this.state.city}
@@ -64,8 +88,8 @@ class App extends React.Component {
             sunset={this.state.sunset}
             error={this.state.error}
           />
-        </div>
-      </div>
+        </Div>
+      </MainDiv>
     );
   }
 }

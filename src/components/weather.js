@@ -10,9 +10,6 @@ const Weather = (props) => (
         <p>Sunset: {props.sunset}</p>
       </div>
     }
-    {
-      props.error && <p>{props.error}</p>
-    }
   </>
 );
 
