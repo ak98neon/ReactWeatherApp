@@ -3,6 +3,7 @@ import Info from './components/info';
 import FormWeather from './components/form';
 import Weather from './components/weather';
 import styled from 'styled-components';
+import { Spinner } from 'reactstrap';
 
 const API_KEY = "5001c5c4ca26376aeb6215ed4724be97";
 
@@ -31,11 +32,15 @@ class App extends React.Component {
     country: undefined,
     pressure: undefined,
     sunset: undefined,
-    error: undefined
+    error: undefined,
+    loading: false
   }
 
   gettingWeather = async (e) => {
     e.preventDefault();
+    this.setState({
+      loading: true
+    })
     const city = e.target.elements.city.value;
 
     if (city) {
@@ -77,6 +82,9 @@ class App extends React.Component {
         error: "Enter valid city name!"
       })
     }
+    this.setState({
+      loading: false
+    })
   }
 
   render() {
@@ -97,6 +105,10 @@ class App extends React.Component {
             sunset={this.state.sunset}
             error={this.state.error}
           />
+          {
+              this.state.loading && <Spinner className="loading_spinner"
+              color="warning" />
+          }
         </Div>
       </MainDiv>
     );

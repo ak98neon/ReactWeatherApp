@@ -11,6 +11,7 @@
 }
 
 .input_city {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -19,4 +20,13 @@
   position: absolute;
   top: 90px;
   left: 230px;
+}
+
+.loading_spinner {
+  margin-left: 10px;
+}
+
+.invalid_feedback, .valid_feedback {
+  position: absolute;
+  top: 37px;
 }

@@ -3,6 +3,7 @@ import {Form, Button, Input, FormFeedback} from 'reactstrap';
 import '../scss/Form.scss';
 
 class FormWeather extends React.Component {
+
   render() {
     return(
       <Form onSubmit={this.props.weatherMethod} className="main_form">
@@ -15,11 +16,16 @@ class FormWeather extends React.Component {
             valid={this.props.city}
             invalid={this.props.error}
           />
-          <FormFeedback valid>Sweet! City Find!</FormFeedback>
-          <FormFeedback invalid>Enter valid city name!</FormFeedback>
+          <FormFeedback valid className="valid_feedback">Sweet! City Find!</FormFeedback>
+          <FormFeedback invalid className="invalid_feedback">Enter valid city name!</FormFeedback>
         </div>
         <br/>
-        <Button color="success" className="btn_submit_form">Get Weather</Button>
+        <Button
+          color="success"
+          className="btn_submit_form"
+          onClick={this.getWeatherBtn}>
+          Get Weather
+        </Button>
       </Form>
     )
   }
